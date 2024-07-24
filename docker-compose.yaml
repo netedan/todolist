@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  nginx_todo:
+    build:
+      context: ./docker/nginx
+    container_name: nginx_todo
+    ports:
+      - "${TODO_NGINX_EXTERNAL_PORT}:80"
+    volumes:
+      - ./srv:/srv
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - app-todo-network
+
+  php_todo:
+    build:
+      context: ./docker/fpm
+      args:
+        user: docker-user
+        uid: "${TODO_USER_UID}"
+    container_name: php_todo
+    volumes:
+      - ./srv:/srv
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - app-todo-network
+
+  postgres_todo:
+    image: postgres:16.1
+    restart: always
+    container_name: postgres_todo
+    environment:
+      POSTGRES_PASSWORD: ${TODO_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${TODO_POSTGRES_DATABASE}
+      POSTGRES_USER: ${TODO_POSTGRES_USER}
+    ports:
+      - "${TODO_POSTGRES_EXTERNAL_PORT}:5432"
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    networks:
+      - app-todo-network
+
+networks:
+  app-todo-network:
+    driver: bridge
