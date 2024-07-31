@@ -6,9 +6,9 @@ services:
       context: ./docker/nginx
     container_name: nginx_todo
     ports:
-      - "${TODO_NGINX_EXTERNAL_PORT}:80"
+      - "${TODO_NGINX_EXTERNAL_PORT}:82"
     volumes:
-      - ./srv:/srv
+      - ./src:/src
     extra_hosts:
       - host.docker.internal:host-gateway
     networks:
@@ -22,7 +22,7 @@ services:
         uid: "${TODO_USER_UID}"
     container_name: php_todo
     volumes:
-      - ./srv:/srv
+      - ./src:/src
     extra_hosts:
       - host.docker.internal:host-gateway
     networks:

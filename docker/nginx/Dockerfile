@@ -2,9 +2,9 @@ FROM nginx:latest
 
 COPY todo.local.conf /etc/nginx/conf.d/todo.local.conf
 
-WORKDIR /srv
+WORKDIR /src
 
-VOLUME /srv
+VOLUME /src
 
 EXPOSE 82
 

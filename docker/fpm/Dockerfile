@@ -31,8 +31,8 @@ chown -R $user:$user /home/$user
 
 COPY php_todo.ini /usr/local/etc/php/conf.d/php.ini
 
-WORKDIR /srv
-VOLUME /srv
+WORKDIR /src
+VOLUME /src
 
 USER $user
 
