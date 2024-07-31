@@ -1,10 +1,7 @@
 <?php
-namespace Ntd\Todolist;
+namespace App;
+const ROOT_PATH = __DIR__ . '/..';
 
-use Ntd\Todolist\Models\User;
+require ROOT_PATH . '/vendor/autoload.php';
 
-require '../vendor/autoload.php';
-
-$user = new User();
-$user->setFullName('a', 'b', 'c');
-$user->printFullNameWithBr();
+require ROOT_PATH . '/router.php';
