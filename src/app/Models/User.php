@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Ntd\Todolist\Models;
 
 class User
 {

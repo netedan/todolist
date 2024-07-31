@@ -1,9 +1,9 @@
 <?php
-namespace Src;
+namespace Ntd\Todolist;
 
-use Models\User;
+use Ntd\Todolist\Models\User;
 
-require '../autoload.php';
+require '../vendor/autoload.php';
 
 $user = new User();
 $user->setFullName('a', 'b', 'c');
