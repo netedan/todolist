@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use Jenssegers\Blade\Blade;
 use const App\ROOT_PATH;
 
-
-class UserController
+class TaskController
 {
     public Blade $blade;
 
@@ -18,16 +18,16 @@ class UserController
 
     public function index()
     {
-        $users = User::all();
-        echo $this->blade->make('users', ['users' => $users])->render();
+        $tasks = Task::all();
+        echo $this->blade->make('tasks', ['tasks' => $tasks])->render();
     }
 
     public function show(int $id)
     {
-        $users = User::all();
-        foreach ($users as $user) {
-            if ($user->id === $id) {
-                echo $this->blade->make('user', ['user' => $user])->render();
+        $tasks = Task::all();
+        foreach ($tasks as $task) {
+            if ($task->id === $id) {
+                echo $this->blade->make('task', ['task' => $task])->render();
                 return;
             }
         }

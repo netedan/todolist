@@ -16,5 +16,8 @@ SimpleRouter::get('/projects/{id}', [\App\Controllers\ProjectController::class, 
 SimpleRouter::get('/users', [\App\Controllers\UserController::class, 'index']);
 SimpleRouter::get('/users/{id}', [\App\Controllers\UserController::class, 'show']);
 
-SimpleRouter::start();
+SimpleRouter::get('/tasks', [\App\Controllers\TaskController::class, 'index']);
+SimpleRouter::get('/tasks/{id}', [\App\Controllers\TaskController::class, 'show']);
 
+
+SimpleRouter::start();
