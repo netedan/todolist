@@ -13,5 +13,8 @@ SimpleRouter::get('/', function() {
 SimpleRouter::get('/projects', [\App\Controllers\ProjectController::class, 'index']);
 SimpleRouter::get('/projects/{id}', [\App\Controllers\ProjectController::class, 'show']);
 
+SimpleRouter::get('/users', [\App\Controllers\UserController::class, 'index']);
+SimpleRouter::get('/users/{id}', [\App\Controllers\UserController::class, 'show']);
+
 SimpleRouter::start();
 

@@ -1,6 +1,6 @@
 <div>
-    <p>{{ $project->id }}</p>
-    <p>{{ $project->authorId }}</p>
+    <p>Project ID: {{ $project->id }}</p>
+    <p>Author ID: {{ $project->authorId }}</p>
     {{--        <p>{{ $project->tasks }}</p>--}}
-    <p>{{ $project->name }}</p>
+    <p>Project name: {{ $project->name }}</p>
 </div>
