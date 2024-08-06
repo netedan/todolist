@@ -6,4 +6,4 @@
         <p>Task authorId: {{ $task->authorId }}</p>
         <p>Task executorId: {{ $task->executorId }}</p>
     </div>
-@endforeach<?php
+@endforeach

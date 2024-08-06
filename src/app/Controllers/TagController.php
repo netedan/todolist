@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\Task;
+use App\Models\Tag;
 use Jenssegers\Blade\Blade;
 use const App\ROOT_PATH;
 
-class TaskController
+class TagController
 {
     public Blade $blade;
 
@@ -17,16 +17,16 @@ class TaskController
 
     public function index()
     {
-        $tasks = Task::all();
-        echo $this->blade->make('tasks', ['tasks' => $tasks])->render();
+        $tags = Tag::all();
+        echo $this->blade->make('tags', ['tags' => $tags])->render();
     }
 
     public function show(int $id)
     {
-        $tasks = Task::all();
-        foreach ($tasks as $task) {
-            if ($task->id === $id) {
-                echo $this->blade->make('task', ['task' => $task])->render();
+        $tags = Tag::all();
+        foreach ($tags as $tag) {
+            if ($tag->id === $id) {
+                echo $this->blade->make('tags', ['tags' => $tags])->render();
                 return;
             }
         }
