@@ -18,15 +18,4 @@ class ProjectController
         echo $this->blade->make('projects', ['projects' => $projects])->render();
     }
 
-    public function show(int $id)
-    {
-        $projects = Project::all();
-        foreach ($projects as $project) {
-            if ($project->id === $id) {
-                echo $this->blade->make('project', ['project' => $project])->render();
-                return;
-            }
-        }
-        echo $this->blade->make('404')->render();
-    }
 }

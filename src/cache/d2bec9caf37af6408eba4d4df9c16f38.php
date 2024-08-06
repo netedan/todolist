@@ -1,0 +1,1 @@
+<h1>404 not found</h1><?php /**PATH /src/views/404.blade.php ENDPATH**/ ?>
