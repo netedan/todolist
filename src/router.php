@@ -2,7 +2,7 @@
 
 use Pecee\SimpleRouter\SimpleRouter;
 
-SimpleRouter::get('/', function() {
+SimpleRouter::get('/', function () {
     return 'Hello world';
 });
 
@@ -19,5 +19,9 @@ SimpleRouter::get('/users/{id}', [\App\Controllers\UserController::class, 'show'
 SimpleRouter::get('/tasks', [\App\Controllers\TaskController::class, 'index']);
 SimpleRouter::get('/tasks/{id}', [\App\Controllers\TaskController::class, 'show']);
 
+SimpleRouter::get('/tags', [\App\Controllers\TagController::class, 'index']);
+SimpleRouter::get('/tags/{id}', [\App\Controllers\TagController::class, 'show']);
+
+SimpleRouter::get('/add-project', [\App\Controllers\AddProjectController::class, 'show']);
 
 SimpleRouter::start();
