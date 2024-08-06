@@ -1,23 +1,26 @@
-<head>
-@foreach($users as $user)
-    <div>
-        User ID: <a href="/users/{{ $user->id }}">{{ $user->id }}</a>
-        <p>User name: {{ $user->name }}</p>
-        <p>User Surname: {{ $user->surname }}</p>
-        <p>User patronymic: {{ $user->patronymic }}</p>
-    </div>
-@endforeach
-</head>
-    <body>
-    <div class="base" id="buttons">
-        <div>
-            <label>Delete all users?</label>
-            <input type="checkbox" name="agree?">
-        </div>
-        <div>
-            <form class="btn" id="agree">
-                <input type="submit" value="Delete"
-                       style="height: 35px; width: 150px">
+@extends('layout')
 
-        </div>
-    </body>
+@section('content')
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>User name</th>
+            <th>User surname</th>
+            <th>User patronymic</th>
+            <th>Manage</th>
+        </tr>
+        @foreach($users as $user)
+            <tr>
+                <td><a href="/users/{{ $user['id'] }}">{{ $user['id'] }}</a></td>
+                <td>{{ $user['name'] }}</td>
+                <td>{{ $user['surname'] }}</td>
+                <td>{{ $user['patronymic'] }}</td>
+                <td>
+                    <form method="post" action="/users/{{ $user['id'] }}">
+                        <input class="button_delete" type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+@endsection

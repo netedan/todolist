@@ -13,31 +13,6 @@ class User implements BaseModel
     {
     }
 
-    // Метод для получения всех пользователей
-    public static function all(): array
-    {
-        return [
-            new User(
-                id: 1,
-                surname: "Ivanov",
-                name: 'Ivan',
-                patronymic: 'Ivanovich'
-            ),
-            new User(
-                id: 2,
-                surname: "Petrov",
-                name: 'Petr',
-                patronymic: 'Petrovich'
-            ),
-            new User(
-                id: 3,
-                surname: "Sergeev",
-                name: 'Sergej',
-                patronymic: 'Sergejevich'
-            )
-        ];
-    }
-
     public function setFullName(string $surname, string $name, string $patronymic): void //метод
     {
         $this->surname = $surname;//запись параметра методов свойства

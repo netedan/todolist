@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Jenssegers\Blade\Blade;
 use const App\ROOT_PATH;
 
@@ -18,15 +19,15 @@ class UserController
 
     public function index()
     {
-        $users = User::all();
+        $users = UserRepository::all();
         echo $this->blade->make('users', ['users' => $users])->render();
     }
 
     public function show(int $id)
     {
-        $users = User::all();
+        $users = UserRepository::all();
         foreach ($users as $user) {
-            if ($user->id === $id) {
+            if ($user['id'] === $id) {
                 echo $this->blade->make('user', ['user' => $user])->render();
                 return;
             }
@@ -34,4 +35,9 @@ class UserController
         echo $this->blade->make('404')->render();
     }
 
+    public function destroy(int $id)
+    {
+        UserRepository::destroy($id);
+        redirect('/users');
+    }
 }

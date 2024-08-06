@@ -1,0 +1,13 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr {
+    border: 1px solid gray;
+}
+
+.button_delete {
+    height: 35px;
+    width: 150px
+}
