@@ -1,3 +1,4 @@
+
 <div>
     Task ID: <p>{{ $task->id }}</p>
     <p>Task name: {{ $task->name }}</p>

@@ -15,6 +15,6 @@ class AddProjectController
     }
     public function show()
     {
-        echo $this->blade->make('add.project')->render();
+        echo $this->blade->make('add_project')->render();
     }
 }
