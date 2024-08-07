@@ -10,5 +10,9 @@
         "pecee/simple-router": "^5.4",
         "jenssegers/blade": "^2.0",
         "illuminate/view": "11.7.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.11",
+        "squizlabs/php_codesniffer": "*"
     }
 }

@@ -14,7 +14,6 @@ class UserRepository
                 'csip_tech',
                 'csip_tech',
                 'csip_tech'
-
             );
             $pdo = new \PDO($conStr);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

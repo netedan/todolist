@@ -9,7 +9,8 @@ use const App\ROOT_PATH;
 class ProjectController
 {
     public Blade $blade;
-    public function __construct(){
+    public function __construct()
+    {
         $this->blade = new Blade(ROOT_PATH . '/views', ROOT_PATH . '/cache');
     }
     public function index()

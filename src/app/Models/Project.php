@@ -10,8 +10,7 @@ class Project implements BaseModel
         public ?int    $authorId,
         public ?array  $tasks,
         public ?string $name,
-    )
-    {
+    ) {
     }
 
     public static function all(): array

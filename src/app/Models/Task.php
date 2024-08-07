@@ -10,8 +10,7 @@ class Task implements BaseModel
         public ?bool   $status,
         public ?int    $authorId,
         public ?int    $executorId
-    )
-    {
+    ) {
     }
 
     public static function all(): array
