@@ -1,24 +1,39 @@
-<head>
-    @foreach($projects as $project)
-        <div>
-            <a href="/projects/{{ $project->id }}">{{ $project->id }}</a>
-            <p>{{ $project->authorId }}</p>
-            {{--        <p>{{ $project->tasks }}</p>--}}
-            <p>{{ $project->name }}</p>
-        </div>
-    @endforeach
-</head>
-<body>
-<div class="base" id="buttons">
-    <div>
-        <label>Delete all projects?</label>
-        <input type="checkbox" name="agree?">
-    </div>
-    <div>
-        <form class="btn" id="agree">
-            <input type="submit" value="Delete"
-            style="height: 35px; width: 150px">
+@extends('layout')
 
-    </div>
+@section('content')
+    <head>
+        <style>
+            tr {
+                font-size: 20px;
+                text-align: center;
+            }
+            body {
+                background-color: beige;
+            }
+        </style>
+    </head>
+    <body>
+    <table>
+        <tr>
+            <th>Project ID</th>
+            <th>Project name</th>
+            <th>Author ID</th>
+            <th>Manage</th>
+        </tr>
+        @foreach($projects as $project)
+            <tr>
+                <td><a href="/projects/{{ $project['id'] }}">{{ $project['id'] }}</a></td>
+                <td>{{ $project['author_id'] }}</td>
+                <td>{{ $project['project_name'] }}</td>
+                {{--        <p>{{ $project->tasks }}</p>--}}
+                <td>
+                    <form method="post" action="/projects/{{ $project['id'] }}">
+                        <input class="button_delete" type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
 
-</body>
+    </body>
+@endsection

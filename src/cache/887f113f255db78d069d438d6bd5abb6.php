@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
 <div>
     <p>User ID: <?php echo e($user['id']); ?></p>

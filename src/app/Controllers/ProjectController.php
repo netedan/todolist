@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Project;
+use App\Repositories\ProjectRepository;
+use App\Repositories\TaskRepository;
 use Jenssegers\Blade\Blade;
 use const App\ROOT_PATH;
 
@@ -15,8 +17,26 @@ class ProjectController
     }
     public function index()
     {
-        $projects = Project::all();
+        $projects = ProjectRepository::all();
         echo $this->blade->make('projects', ['projects' => $projects])->render();
+    }
+
+    public function show(int $id)
+    {
+        $projects = ProjectRepository::all();
+        foreach ($projects as $project) {
+            if ($project['id'] === $id) {
+                echo $this->blade->make('project', ['project' => $project])->render();
+                return;
+            }
+        }
+        echo $this->blade->make('404')->render();
+    }
+
+    public function destroy(int $id)
+    {
+        ProjectRepository::destroy($id);
+        redirect('/projects');
     }
 
 }
