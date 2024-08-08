@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-class UserRepository
+class TaskRepository
 {
     public static function all()
     {
@@ -17,7 +17,7 @@ class UserRepository
             );
             $pdo = new \PDO($conStr);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $sth = $pdo->prepare("SELECT id, name, surname, patronymic FROM users");
+            $sth = $pdo->prepare("SELECT id, name, status, author_id, executor_id FROM tasks");
             $sth->execute();
 
             return $sth->fetchAll();
@@ -38,7 +38,7 @@ class UserRepository
             );
             $pdo = new \PDO($conStr);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $sth = $pdo->prepare("DELETE FROM users where id = $id");
+            $sth = $pdo->prepare("DELETE FROM tasks where id = $id");
             $sth->execute();
 
             return true;

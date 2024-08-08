@@ -1,24 +1,40 @@
-<head>
-    @foreach($tasks as $task)
-        <div>
-            Task ID: <a href="/tasks/{{ $task->id }}">{{ $task->id }}</a>
-            <p>Task name: {{ $task->name }}</p>
-            <p>Task status: {{ $task->status }}</p>
-            <p>Task authorId: {{ $task->authorId }}</p>
-            <p>Task executorId: {{ $task->executorId }}</p>
-        </div>
-    @endforeach
-</head>
-<body>
-<div class="base" id="buttons">
-    <div>
-        <label>Delete all tasks?</label>
-        <input type="checkbox" name="agree?">
-    </div>
-    <div>
-        <form class="btn" id="agree">
-            <input type="submit" value="Delete"
-                   style="height: 35px; width: 150px">
+@extends('layout')
 
-    </div>
-</body>
+@section('content')
+    <head>
+        <style>
+            tr {
+                font-size: 20px;
+                text-align: center;
+            }
+            body {
+                background-color: beige;
+            }
+        </style>
+    </head>
+    <body>
+    <table>
+        <tr>
+            <th>Task ID</th>
+            <th>Task name</th>
+            <th>Task status</th>
+            <th>Task executor ID</th>
+            <th>Manage</th>
+        </tr>
+        @foreach($tasks as $task)
+            <tr>
+                <td><a href="/tasks/{{ $task['id'] }}">{{ $task['id'] }}</a></td>
+                <td>{{ $task['name'] }}</td>
+                <td>{{ $task['status'] }}</td>
+                <td>{{ $task['author_id'] }}</td>
+                <td>{{ $task['executor_id'] }}</td>
+                <td>
+                    <form method="post" action="/tasks/{{ $task['id'] }}">
+                        <input class="button_delete" type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+    </body>
+@endsection

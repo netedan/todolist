@@ -9,8 +9,7 @@ class User implements BaseModel
         public ?string $surname,
         public ?string $name,
         public ?string $patronymic
-    )
-    {
+    ) {
     }
 
     public function setFullName(string $surname, string $name, string $patronymic): void //метод
