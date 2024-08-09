@@ -1,6 +1,17 @@
 @extends('layout')
 
 @section('content')
+    <head>
+        <style>
+            tr {
+                font-size: 20px;
+                text-align: center;
+            }
+            body {
+                background-color: beige;
+            }
+        </style>
+    </head>
     <table>
         <tr>
             <th>User ID</th>

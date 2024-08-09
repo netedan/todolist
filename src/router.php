@@ -25,8 +25,10 @@ SimpleRouter::post('/tasks/{id}', [\App\Controllers\TaskController::class, 'dest
 
 SimpleRouter::get('/tags', [\App\Controllers\TagController::class, 'index']);
 SimpleRouter::get('/tags/{id}', [\App\Controllers\TagController::class, 'show']);
+SimpleRouter::post('/tags/{id}', [\App\Controllers\TagController::class, 'destroy']);
 
 SimpleRouter::get('/add-project', [\App\Controllers\AddProjectController::class, 'show']);
 
+SimpleRouter::get('/menu', [\App\Controllers\MenuController::class, 'show']);
 
 SimpleRouter::start();
