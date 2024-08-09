@@ -1,10 +1,37 @@
 @extends('layout')
 
 @section('content')
-<div>
-    <p>User ID: {{ $user['id'] }}</p>
-    <p>User name: {{ $user['name'] }}</p>
-    <p>User surname: {{ $user['surname']}}</p>
-    <p>User patronymic: {{ $user['patronymic'] }}</p>
-</div>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            tr {
+                border: 1px solid gray;
+            }
+            tr {
+                font-size: 20px;
+                text-align: center;
+            }
+            body {
+                background-color: beige;
+            }
+        </style>
+    </head>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>User name</th>
+            <th>User surname</th>
+            <th>User patronymic</th>
+        </tr>
+        <tr>
+            <td>{{ $user['id'] }}</td>
+            <td>{{ $user['name'] }}</td>
+            <td>{{ $user['surname'] }}</td>
+            <td>{{ $user['patronymic'] }}</td>
+        </tr>
+    </table>
 @endsection

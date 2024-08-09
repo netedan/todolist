@@ -1,6 +1,6 @@
-@extends('layout')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <head>
         <style>
             table {
@@ -26,8 +26,9 @@
             <th>Tag name</th>
         </tr>
         <tr>
-            <td>{{ $tag['id'] }}</td>
-            <td>{{ $tag['name'] }}</td>
+            <td><?php echo e($tag['id']); ?></td>
+            <td><?php echo e($tag['name']); ?></td>
         </tr>
     </table>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /src/views/tag.blade.php ENDPATH**/ ?>

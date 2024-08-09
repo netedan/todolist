@@ -1,6 +1,6 @@
-@extends('layout')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <head>
         <style>
             table {
@@ -29,11 +29,12 @@
             <th>Task executor ID</th>
         </tr>
         <tr>
-            <td>{{ $task['id'] }}</td>
-            <td>{{ $task['name'] }}</td>
-            <td>{{ $task['status'] }}</td>
-            <td>{{ $task['author_id'] }}</td>
-            <td>{{ $task['executor_id'] }}</td>
+            <td><?php echo e($task['id']); ?></td>
+            <td><?php echo e($task['name']); ?></td>
+            <td><?php echo e($task['status']); ?></td>
+            <td><?php echo e($task['author_id']); ?></td>
+            <td><?php echo e($task['executor_id']); ?></td>
         </tr>
     </table>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /src/views/task.blade.php ENDPATH**/ ?>
