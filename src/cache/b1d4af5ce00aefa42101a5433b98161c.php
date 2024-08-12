@@ -5,6 +5,7 @@
             text-align: center;
             font-family: Arial;
         }
+
         .transfer {
             width: 250px;
             border-radius: 1em;
@@ -17,13 +18,17 @@
 
 <body>
 <h1>Menu</h1>
-<p><a href="<?php echo e(('projects')); ?>"</a></p>
-<input class="transfer" type="submit" value="Projects">
-<p><a href="<?php echo e(('users')); ?>"</a></p>
-<input class="transfer" type="submit" value="Users">
-<p><a href="<?php echo e(('tasks')); ?>"</a></p>
-<input class="transfer" type="submit" value="Tasks">
-<p><a href="<?php echo e(('tags')); ?>"</a></p>
-<input class="transfer" type="submit" value="Tasks">
+<p><a href="<?php echo e(('projects')); ?>">
+        <input class="transfer" type="submit" value="Projects">
+    </a></p>
+<p><a href="<?php echo e(('users')); ?>">
+        <input class="transfer" type="submit" value="Users">
+    </a></p>
+<p><a href="<?php echo e(('tasks')); ?>">
+        <input class="transfer" type="submit" value="Tasks">
+    </a></p>
+<p><a href="<?php echo e(('tags')); ?>">
+        <input class="transfer" type="submit" value="Tags">
+    </a></p>
 </body>
 <?php /**PATH /src/views/menu.blade.php ENDPATH**/ ?>
