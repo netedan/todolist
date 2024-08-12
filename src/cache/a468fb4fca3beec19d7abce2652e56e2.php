@@ -19,6 +19,7 @@
             <th>Task name</th>
             <th>Task status</th>
             <th>Task executor ID</th>
+            <th>Task author ID</th>
             <th>Manage</th>
         </tr>
         <?php $__currentLoopData = $tasks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $task): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

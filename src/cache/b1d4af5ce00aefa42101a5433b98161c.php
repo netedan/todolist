@@ -17,7 +17,7 @@
 
 
 <body>
-<h1>Menu</h1>
+<h1>Main menu</h1>
 <p><a href="<?php echo e(('projects')); ?>">
         <input class="transfer" type="submit" value="Projects">
     </a></p>
