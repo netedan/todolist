@@ -38,9 +38,6 @@
     <a href="{{ ('tags') }}">
         <input class="transfer" type="submit" value="Tags">
     </a>
-    <a href="{{'menu'}}">
-        <input class="transfer" type="submit" value="Main menu">
-    </a>
 </div>
 @yield('content')
 </body>

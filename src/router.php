@@ -1,10 +1,11 @@
 <?php
 
 use Pecee\SimpleRouter\SimpleRouter;
-require_once \App\ROOT_PATH. '/helper.php';
+
+require_once \App\ROOT_PATH . '/helper.php';
 
 SimpleRouter::get('/', function () {
-    return 'Hello world';
+    redirect('/projects');
 });
 
 ////SimpleRouter::any('/', function() {
@@ -28,7 +29,5 @@ SimpleRouter::get('/tags/{id}', [\App\Controllers\TagController::class, 'show'])
 SimpleRouter::post('/tags/{id}', [\App\Controllers\TagController::class, 'destroy']);
 
 SimpleRouter::get('/add-project', [\App\Controllers\AddProjectController::class, 'show']);
-
-SimpleRouter::get('/menu', [\App\Controllers\MenuController::class, 'show']);
 
 SimpleRouter::start();
