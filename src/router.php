@@ -13,8 +13,12 @@ SimpleRouter::get('/', function () {
 //});
 
 SimpleRouter::get('/projects', [\App\Controllers\ProjectController::class, 'index']);
+SimpleRouter::get('/projects/create', [\App\Controllers\ProjectController::class, 'create']);
 SimpleRouter::get('/projects/{id}', [\App\Controllers\ProjectController::class, 'show']);
-SimpleRouter::post('/projects/{id}', [\App\Controllers\ProjectController::class, 'destroy']);
+SimpleRouter::post('/projects/{id}/destroy', [\App\Controllers\ProjectController::class, 'destroy']);
+SimpleRouter::post('/projects', [\App\Controllers\ProjectController::class, 'store']);
+SimpleRouter::get('/projects/{id}/edit', [\App\Controllers\ProjectController::class, 'edit']);
+SimpleRouter::post('/projects/{id}', [\App\Controllers\ProjectController::class, 'update']);
 
 SimpleRouter::get('/users', [\App\Controllers\UserController::class, 'index']);
 SimpleRouter::get('/users/{id}', [\App\Controllers\UserController::class, 'show']);
@@ -28,6 +32,5 @@ SimpleRouter::get('/tags', [\App\Controllers\TagController::class, 'index']);
 SimpleRouter::get('/tags/{id}', [\App\Controllers\TagController::class, 'show']);
 SimpleRouter::post('/tags/{id}', [\App\Controllers\TagController::class, 'destroy']);
 
-SimpleRouter::get('/add-project', [\App\Controllers\AddProjectController::class, 'show']);
 
 SimpleRouter::start();

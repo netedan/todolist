@@ -11,3 +11,23 @@ tr {
     height: 35px;
     width: 150px
 }
+
+#navigation ul {
+    display: flex;
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+    padding-left: 0; /*убираем левый отступ, равный 40px*/
+}
+
+#navigation a {
+    border-radius: 5px;
+    padding: 4px 2px;
+    background-color: bisque;
+    border: 1px solid black;
+    display: block;
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+}
+
+#navigation a:hover {
+    background-color: aliceblue;
+}
