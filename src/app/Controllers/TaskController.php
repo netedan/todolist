@@ -40,5 +40,38 @@ class TaskController
         TaskRepository::destroy($id);
         redirect('/tasks');
     }
+    public function create()
+    {
+        echo $this->blade->make('task_add')->render();
+    }
+    public function store()
+    {
+        TaskRepository::store(input()->post('task_name'), input()->post('task_status'), input()->post('author_id'), input()->post('executor_id'));
+        redirect('/tasks');
+    }
+    public function edit(int $id)
+    {
+        var_dump($id);
+        $tasks = TaskRepository::all();
+        foreach ($tasks as $task) {
+            var_dump($task['id']);
+            if ($task['id'] === $id) {
+                echo $this->blade->make('task_edit', ['task' => $task])->render();
+                return;
+            }
+        }
+    }
+    public function update(int $id)
+    {
+        $tasks = TaskRepository::all();
+        foreach ($tasks as $task) {
+            if ($task['id'] === $id) {
+                TaskRepository::update($id, input()->post('task_name'), input()->post('task_status'), input()->post('task_author_id'), input()->post('task_executor_id'));
+                redirect('/tasks');
+                return;
+            }
+        }
+        echo $this->blade->make('404')->render();
+    }
 
 }

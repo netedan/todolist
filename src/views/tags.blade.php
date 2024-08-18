@@ -12,6 +12,7 @@
             }
         </style>
     </head>
+    <a href="/tags/create">Add tag</a>
     <table>
         <tr>
             <th>Tag ID</th>
@@ -23,9 +24,10 @@
                 <td><a href="/tags/{{ $tag['id'] }}">{{ $tag['id'] }}</a></td>
                 <td>{{ $tag['name'] }}</td>
                 <td>
-                    <form method="post" action="/tags/{{ $tag['id'] }}">
+                    <form method="post" action="/tags/{{ $tag['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
+                    <a href="/tags/{{ $tag['id'] }}/edit">Edit</a>
                 </td>
             </tr>
         @endforeach

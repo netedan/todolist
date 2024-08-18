@@ -1,17 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <head>
-        <style>
-            tr {
-                font-size: 20px;
-                text-align: center;
-            }
-            body {
-                background-color: beige;
-            }
-        </style>
-    </head>
+    <a href="/users/create">Add user</a>
     <table>
         <tr>
             <th>User ID</th>
@@ -27,9 +17,10 @@
                 <td>{{ $user['surname'] }}</td>
                 <td>{{ $user['patronymic'] }}</td>
                 <td>
-                    <form method="post" action="/users/{{ $user['id'] }}">
+                    <form method="post" action="/users/{{ $user['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
+                    <a href="/users/{{ $user['id'] }}/edit">Edit</a>
                 </td>
             </tr>
         @endforeach

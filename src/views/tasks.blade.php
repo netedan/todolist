@@ -13,6 +13,9 @@
         </style>
     </head>
     <body>
+
+    <a href="/tasks/create">Add task</a>
+
     <table>
         <tr>
             <th>Task ID</th>
@@ -30,9 +33,10 @@
                 <td>{{ $task['author_id'] }}</td>
                 <td>{{ $task['executor_id'] }}</td>
                 <td>
-                    <form method="post" action="/tasks/{{ $task['id'] }}">
+                    <form method="post" action="/tasks/{{ $task['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
+                    <a href="/tasks/{{ $task['id'] }}/edit">Edit</a>
                 </td>
             </tr>
         @endforeach

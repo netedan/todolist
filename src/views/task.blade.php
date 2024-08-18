@@ -20,6 +20,7 @@
             }
         </style>
     </head>
+
     <table>
         <tr>
             <th>Task ID</th>
