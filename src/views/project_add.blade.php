@@ -1,6 +1,7 @@
 @extends('layout')
 {{--todo добавить верстку в index.css--}}
 @section('content')
+
     <form method="POST" action="/projects">
         <div>
             <label> Project author ID </label>

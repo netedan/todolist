@@ -2,19 +2,16 @@
 
 @section('content')
     <head>
-        <style>
-            tr {
-                font-size: 20px;
-                text-align: center;
-            }
-            body {
-                background-color: beige;
-            }
-        </style>
     </head>
     <body>
 
-    <a href="/tasks/create">Add task</a>
+    <div class="add_button">
+        <ul>
+            <li>
+                <a href="/tasks/create">Add task</a>
+            </li>
+        </ul>
+    </div>
 
     <table>
         <tr>
@@ -36,7 +33,9 @@
                     <form method="post" action="/tasks/{{ $task['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
-                    <a href="/tasks/{{ $task['id'] }}/edit">Edit</a>
+                    <form method="get" action="/tasks/{{ $task['id'] }}/edit">
+                        <input class="button_edit" type="submit" value="Edit">
+                    </form>
                 </td>
             </tr>
         @endforeach

@@ -2,17 +2,15 @@
 
 @section('content')
     <head>
-        <style>
-            tr {
-                font-size: 20px;
-                text-align: center;
-            }
-            body {
-                background-color: beige;
-            }
-        </style>
     </head>
-    <a href="/tags/create">Add tag</a>
+    <body>
+    <div class="add_button">
+        <ul>
+            <li>
+                <a href="/tags/create">Add tag</a>
+            </li>
+        </ul>
+    </div>
     <table>
         <tr>
             <th>Tag ID</th>
@@ -27,9 +25,12 @@
                     <form method="post" action="/tags/{{ $tag['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
-                    <a href="/tags/{{ $tag['id'] }}/edit">Edit</a>
+                    <form method="get" action="/tags/{{ $tag['id'] }}/edit">
+                        <input class="button_edit" type="submit" value="Edit">
+                    </form>
                 </td>
             </tr>
         @endforeach
     </table>
+    </body>
 @endsection

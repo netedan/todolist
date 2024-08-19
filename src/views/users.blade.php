@@ -1,7 +1,15 @@
 @extends('layout')
 
 @section('content')
-    <a href="/users/create">Add user</a>
+    <head>
+    </head>
+    <div class="add_button">
+        <ul>
+            <li>
+                <a href="/users/create">Add user</a>
+            </li>
+        </ul>
+    </div>
     <table>
         <tr>
             <th>User ID</th>
@@ -20,7 +28,9 @@
                     <form method="post" action="/users/{{ $user['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
-                    <a href="/users/{{ $user['id'] }}/edit">Edit</a>
+                    <form method="get" action="/users/{{ $user['id'] }}/edit">
+                        <input class="button_edit" type="submit" value="Edit">
+                    </form>
                 </td>
             </tr>
         @endforeach
