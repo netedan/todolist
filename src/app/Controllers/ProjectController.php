@@ -25,14 +25,12 @@ class ProjectController
 
     public function show(int $id)
     {
-        $projects = ProjectRepository::all();
-        foreach ($projects as $project) {
-            if ($project['id'] === $id) {
-                echo $this->blade->make('project', ['project' => $project])->render();
-                return;
-            }
+        $result = ProjectRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404')->render();
+        } else {
+            echo $this->blade->make('project', ['project' => $result])->render();
         }
-        echo $this->blade->make('404')->render();
     }
 
     public function destroy(int $id)

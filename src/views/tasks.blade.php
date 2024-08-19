@@ -18,8 +18,8 @@
             <th>Task ID</th>
             <th>Task name</th>
             <th>Task status</th>
-            <th>Task executor ID</th>
             <th>Task author ID</th>
+            <th>Task executor ID</th>
             <th>Manage</th>
         </tr>
         @foreach($tasks as $task)

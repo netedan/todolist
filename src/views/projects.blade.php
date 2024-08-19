@@ -12,18 +12,8 @@
     {{--            }--}}
     {{--        </style>--}}
     {{--todo сделать нормальную кнопку, разобраться, как работаeт blade (фигурные скобки, кавычки)--}}
-    <head>
-        <style>
-
-        </style>
-    </head>
-    <body>
-    <div class="add_button">
-        <ul>
-            <li>
-                <a href="/projects/create">Add project</a>
-            </li>
-        </ul>
+    <div class="sub_navigation">
+        <a class="add_button" href="/projects/create">Add project</a>
     </div>
     <table>
         <tr>
@@ -42,13 +32,9 @@
                     <form method="post" action="/projects/{{ $project['id'] }}/destroy">
                         <input class="button_delete" type="submit" value="Delete">
                     </form>
-
-                    <form method="get" action="/projects/{{ $project['id'] }}/edit">
-                        <input class="button_edit" type="submit" value="Edit">
-                    </form>
+                    <a class="button_edit" href="/projects/{{ $project['id'] }}/edit">Edit</a>
                 </td>
             </tr>
         @endforeach
     </table>
-    </body>
 @endsection
