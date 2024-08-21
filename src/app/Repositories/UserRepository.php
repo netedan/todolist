@@ -25,7 +25,7 @@ class UserRepository extends BaseRepository
         $sth = self::univ(
             "INSERT INTO users ( name, surname, patronymic) VALUES (:name, :surname, :patronymic)",
             ['name' => $name, 'surname' => $surname, 'patronymic' => $patronymic]
-    );
+        );
         return $sth->fetchAll();
     }
 
@@ -42,5 +42,5 @@ class UserRepository extends BaseRepository
         $sql = "SELECT * FROM users WHERE id = :id";
         $sth = self::univ($sql, ['id' => $user_id]);
         return $sth->fetch(\PDO::FETCH_ASSOC);
-      }
+    }
 }

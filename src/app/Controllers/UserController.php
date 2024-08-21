@@ -67,4 +67,3 @@ class UserController
         redirect('/users');
     }
 }
-
