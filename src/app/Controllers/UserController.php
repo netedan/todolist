@@ -26,14 +26,12 @@ class UserController
 
     public function show(int $id)
     {
-        $users = UserRepository::all();
-        foreach ($users as $user) {
-            if ($user['id'] === $id) {
-                echo $this->blade->make('user', ['user' => $user])->render();
-                return;
-            }
+        $result = UserRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404');
+        } else {
+            echo $this->blade->make('user', ['user' => $result])->render();
         }
-        echo $this->blade->make('404')->render();
     }
 
     public function destroy(int $id)
@@ -55,28 +53,18 @@ class UserController
 
     public function edit(int $id)
     {
-        var_dump($id);
-        $users = UserRepository::all();
-        foreach ($users as $user) {
-            var_dump($user['id']);
-            if ($user['id'] === $id) {
-                echo $this->blade->make('user_edit', ['user' => $user])->render();
-                return;
-            }
+        $result = UserRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404');
+        } else {
+            echo $this->blade->make('user_edit', ['user' => $result])->render();
         }
     }
 
     public function update(int $id)
     {
-        $users = UserRepository::all();
-        foreach ($users as $user) {
-            if ($user['id'] === $id) {
-                UserRepository::update($id, input()->post('user_name'), input()->post('user_surname'), input()->post('user_patronymic'));
-                redirect('/users');
-                return;
-            }
-        }
-        echo $this->blade->make('404')->render();
+        UserRepository::update($id, $_POST['user_name'], $_POST['user_surname'], $_POST['user_patronymic']);
+        redirect('/users');
     }
 }
 

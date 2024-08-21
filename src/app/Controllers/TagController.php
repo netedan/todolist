@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Tag;
+use App\Repositories\ProjectRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\TaskRepository;
 use App\Repositories\UserRepository;
@@ -26,14 +27,12 @@ class TagController
 
     public function show(int $id)
     {
-        $tags = TagRepository::all();
-        foreach ($tags as $tag) {
-            if ($tag['id'] === $id) {
-                echo $this->blade->make('tag', ['tag' => $tag])->render();
-                return;
-            }
+        $result = TagRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404');
+        } else {
+            echo $this->blade->make('tag', ['tag' => $result])->render();
         }
-        echo $this->blade->make('404')->render();
     }
 
     public function destroy(int $id)
@@ -55,26 +54,17 @@ class TagController
 
     public function edit(int $id)
     {
-        var_dump($id);
-        $tags = TagRepository::all();
-        foreach ($tags as $tag) {
-            if ($tag['id'] === $id) {
-                echo $this->blade->make('tag_edit', ['tag' => $tag])->render();
-                return;
-            }
+        $result = TagRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404');
+        } else {
+            echo $this->blade->make('tag_edit', ['tag' => $result])->render();
         }
     }
 
     public function update(int $id)
     {
-        $tags = TagRepository::all();
-        foreach ($tags as $tag) {
-            if ($tag['id'] === $id) {
-                TagRepository::update($id, input()->post('tag_name'));
-                redirect('/tags');
-                return;
-            }
-        }
-        echo $this->blade->make('404')->render();
+        TagRepository::update($id, input()->post('tag_name'));
+        redirect('/tags');
     }
 }

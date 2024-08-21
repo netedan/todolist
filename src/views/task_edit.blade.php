@@ -13,11 +13,11 @@ todo изучить массивы и работу с ними--}}
         </div>
         <div>
             <label> Author ID</label>
-            <input type="number" name="task_author_id" value="{{$task['author_id']}}">
+            <input type="number" name="author_id" value="{{$task['author_id']}}">
         </div>
         <div>
             <label> Executor ID</label>
-            <input type="number" name="task_executor_id" value="{{$task['executor_id']}}">
+            <input type="number" name="executor_id" value="{{$task['executor_id']}}">
         </div>
         <div>
             <input type="submit" name="Edit task">

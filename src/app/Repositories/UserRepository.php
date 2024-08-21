@@ -2,93 +2,45 @@
 
 namespace App\Repositories;
 
-class UserRepository
+class UserRepository extends BaseRepository
 {
     public static function all()
     {
-        try {
-            $conStr = sprintf(
-                "pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s",
-                'postgres_todo',
-                5432,
-                'csip_tech',
-                'csip_tech',
-                'csip_tech'
-            );
-            $pdo = new \PDO($conStr);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $sth = $pdo->prepare("SELECT id, name, surname, patronymic FROM users");
-            $sth->execute();
-
-            return $sth->fetchAll();
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        $sth = self::univ(
+            "SELECT id, name, surname, patronymic FROM users", []
+        );
+        return $sth->fetchAll();
     }
 
     public static function destroy(int $id)
     {
-        try {
-            $conStr = sprintf(
-                "pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s",
-                'postgres_todo',
-                5432,
-                'csip_tech',
-                'csip_tech',
-                'csip_tech'
-            );
-            $pdo = new \PDO($conStr);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $sth = $pdo->prepare("DELETE FROM users where id = $id");
-            $sth->execute();
-
-            return true;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        $sth = self::univ(
+            "DELETE FROM users WHERE id = $id", []
+        );
+        return $sth->fetchAll();
     }
 
     public static function store($name, $surname, $patronymic)
     {
-        try {
-            $conStr = sprintf(
-                "pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s",
-                'postgres_todo',
-                5432,
-                'csip_tech',
-                'csip_tech',
-                'csip_tech'
-            );
-            $pdo = new \PDO($conStr);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $sth = $pdo->prepare("INSERT INTO users (name, surname, patronymic) VALUES (:name, :surname, :patronymic)");
-            $sth->execute(['name' => $name, 'surname' => $surname, 'patronymic' => $patronymic]);
-
-            return true;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        $sth = self::univ(
+            "INSERT INTO users ( name, surname, patronymic) VALUES (:name, :surname, :patronymic)",
+            ['name' => $name, 'surname' => $surname, 'patronymic' => $patronymic]
+    );
+        return $sth->fetchAll();
     }
 
     public static function update($id, $name, $surname, $patronymic)
     {
-        try {
-            $conStr = sprintf(
-                "pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s",
-                'postgres_todo',
-                5432,
-                'csip_tech',
-                'csip_tech',
-                'csip_tech'
-            );
-            $pdo = new \PDO($conStr);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $sth = $pdo->prepare("UPDATE users SET name=:name, surname=:surname, patronymic=:patronymic WHERE id = :id");
-            $sth->execute(['name' => $name, 'surname' => $surname, 'patronymic' => $patronymic, 'id' => $id]);
-
-            return true;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
+        self::univ(
+            "UPDATE users SET name=:name, surname=:surname, patronymic=:patronymic WHERE id = :id",
+            ['name' => $name, 'surname' => $surname, 'patronymic' => $patronymic, 'id' => $id]
+        );
     }
+
+    public static function find($user_id)
+    {
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $sth = self::univ($sql, ['id' => $user_id]);
+        return $sth->fetch(\PDO::FETCH_ASSOC);
+      }
 }

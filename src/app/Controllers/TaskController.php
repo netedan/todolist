@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Task;
+use App\Repositories\TagRepository;
 use App\Repositories\TaskRepository;
 use App\Repositories\UserRepository;
 use Jenssegers\Blade\Blade;
@@ -25,14 +26,12 @@ class TaskController
 
     public function show(int $id)
     {
-        $tasks = TaskRepository::all();
-        foreach ($tasks as $task) {
-            if ($task['id'] === $id) {
-                echo $this->blade->make('task', ['task' => $task])->render();
-                return;
-            }
+        $result = TaskRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404');
+        } else {
+            echo $this->blade->make('task', ['task' => $result])->render();
         }
-        echo $this->blade->make('404')->render();
     }
 
     public function destroy(int $id)
@@ -40,38 +39,31 @@ class TaskController
         TaskRepository::destroy($id);
         redirect('/tasks');
     }
+
     public function create()
     {
         echo $this->blade->make('task_add')->render();
     }
+
     public function store()
     {
         TaskRepository::store(input()->post('task_name'), input()->post('task_status'), input()->post('author_id'), input()->post('executor_id'));
         redirect('/tasks');
     }
+
     public function edit(int $id)
     {
-        var_dump($id);
-        $tasks = TaskRepository::all();
-        foreach ($tasks as $task) {
-            var_dump($task['id']);
-            if ($task['id'] === $id) {
-                echo $this->blade->make('task_edit', ['task' => $task])->render();
-                return;
-            }
+        $result = TaskRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404');
+        } else {
+            echo $this->blade->make('task_edit', ['task' => $result])->render();
         }
-    }
-    public function update(int $id)
-    {
-        $tasks = TaskRepository::all();
-        foreach ($tasks as $task) {
-            if ($task['id'] === $id) {
-                TaskRepository::update($id, input()->post('task_name'), input()->post('task_status'), input()->post('task_author_id'), input()->post('task_executor_id'));
-                redirect('/tasks');
-                return;
-            }
-        }
-        echo $this->blade->make('404')->render();
     }
 
+    public function update(int $id)
+    {
+        TaskRepository::update($id, $_POST['task_name'], $_POST['task_status'], $_POST['author_id'], $_POST['executor_id']);
+        redirect('/tasks');
+    }
 }

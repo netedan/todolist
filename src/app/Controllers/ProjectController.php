@@ -52,28 +52,17 @@ class ProjectController
 
     public function edit(int $id)
     {
-        var_dump($id);
-        $projects = ProjectRepository::all();
-        foreach ($projects as $project) {
-            var_dump($project['id']);
-            if ($project['id'] === $id) {
-                echo $this->blade->make('project_edit', ['project' => $project])->render();
-                return;
-            }
+        $result = ProjectRepository::find($id);
+        if ($result === false) {
+            echo $this->blade->make('404')->render();
+        } else {
+            echo $this->blade->make('project_edit', ['project' => $result])->render();
         }
-        echo $this->blade->make('404')->render();
     }
 
     public function update(int $id)
     {
-        $projects = ProjectRepository::all();
-        foreach ($projects as $project) {
-            if ($project['id'] === $id) {
-                ProjectRepository::update($id, input()->post('project_name'), input()->post('author_id'));
-                redirect('/projects');
-                return;
-            }
-        }
-        echo $this->blade->make('404')->render();
+        ProjectRepository::update($id, input()->post('project_name'), input()->post('author_id'));
+        redirect('/projects');
     }
 }
