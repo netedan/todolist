@@ -19,13 +19,13 @@ class TagController
         $this->blade = new Blade(ROOT_PATH . '/views', ROOT_PATH . '/cache');
     }
 
-    public function index()
+    public function index() :void
     {
         $tags = TagRepository::all();
         echo $this->blade->make('tags', ['tags' => $tags])->render();
     }
 
-    public function show(int $id)
+    public function show(int $id) :void
     {
         $result = TagRepository::find($id);
         if ($result === false) {
@@ -35,24 +35,24 @@ class TagController
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id) :void
     {
         TagRepository::destroy($id);
         redirect('/tags');
     }
 
-    public function create()
+    public function create() :void
     {
         echo $this->blade->make('tag_add')->render();
     }
 
-    public function store()
+    public function store() :void
     {
         TagRepository::store(input('tag_name'));
         redirect('/tags');
     }
 
-    public function edit(int $id)
+    public function edit(int $id) :void
     {
         $result = TagRepository::find($id);
         if ($result === false) {
@@ -62,7 +62,7 @@ class TagController
         }
     }
 
-    public function update(int $id)
+    public function update(int $id) :void
     {
         TagRepository::update($id, input()->post('tag_name'));
         redirect('/tags');

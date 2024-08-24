@@ -17,13 +17,13 @@ class ProjectController
         $this->blade = new Blade(ROOT_PATH . '/views', ROOT_PATH . '/cache');
     }
 
-    public function index()
+    public function index() :void
     {
         $projects = ProjectRepository::all();
         echo $this->blade->make('projects', ['projects' => $projects])->render();
     }
 
-    public function show(int $id)
+    public function show(int $id) :void
     {
         $result = ProjectRepository::find($id);
         if ($result === false) {
@@ -33,24 +33,24 @@ class ProjectController
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id) :void
     {
         ProjectRepository::destroy($id);
         redirect('/projects');
     }
 
-    public function create()
+    public function create() :void
     {
         echo $this->blade->make('project_add')->render();
     }
 
-    public function store()
+    public function store() :void
     {
         ProjectRepository::store(input()->post('project_name'), input()->post('author_id'));
         redirect('/projects');
     }
 
-    public function edit(int $id)
+    public function edit(int $id) :void
     {
         $result = ProjectRepository::find($id);
         if ($result === false) {
@@ -60,7 +60,7 @@ class ProjectController
         }
     }
 
-    public function update(int $id)
+    public function update(int $id) :void
     {
         ProjectRepository::update($id, input()->post('project_name'), input()->post('author_id'));
         redirect('/projects');

@@ -18,13 +18,13 @@ class TaskController
         $this->blade = new Blade(ROOT_PATH . '/views', ROOT_PATH . '/cache');
     }
 
-    public function index()
+    public function index() :void
     {
         $tasks = TaskRepository::all();
         echo $this->blade->make('tasks', ['tasks' => $tasks])->render();
     }
 
-    public function show(int $id)
+    public function show(int $id) :void
     {
         $result = TaskRepository::find($id);
         if ($result === false) {
@@ -34,24 +34,24 @@ class TaskController
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id) :void
     {
         TaskRepository::destroy($id);
         redirect('/tasks');
     }
 
-    public function create()
+    public function create() :void
     {
         echo $this->blade->make('task_add')->render();
     }
 
-    public function store()
+    public function store() :void
     {
         TaskRepository::store(input()->post('task_name'), input()->post('task_status'), input()->post('author_id'), input()->post('executor_id'));
         redirect('/tasks');
     }
 
-    public function edit(int $id)
+    public function edit(int $id) :void
     {
         $result = TaskRepository::find($id);
         if ($result === false) {
@@ -61,7 +61,7 @@ class TaskController
         }
     }
 
-    public function update(int $id)
+    public function update(int $id) :void
     {
         TaskRepository::update($id, $_POST['task_name'], $_POST['task_status'], $_POST['author_id'], $_POST['executor_id']);
         redirect('/tasks');

@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 class TagRepository extends BaseRepository
 {
-    public static function all()
+    public static function all() :array
     {
         $sth = self::univ(
             "SELECT id, name FROM tags", []
@@ -12,7 +12,7 @@ class TagRepository extends BaseRepository
         return $sth->fetchAll();
     }
 
-    public static function destroy(int $id)
+    public static function destroy(int $id) :array
     {
         $sth = self::univ(
             "DELETE FROM tags WHERE id = $id", []
@@ -20,7 +20,7 @@ class TagRepository extends BaseRepository
         return $sth->fetchAll();
     }
 
-    public static function store($name)
+    public static function store($name) :array
     {
         $sth = self::univ(
             "INSERT INTO tags (name) VALUES (:name)",
@@ -29,7 +29,7 @@ class TagRepository extends BaseRepository
         return $sth->fetchAll();
     }
 
-    public static function update($id, $name)
+    public static function update($id, $name) :void
     {
         self::univ(
             "UPDATE tags SET name = :name WHERE id = :id",
@@ -37,7 +37,7 @@ class TagRepository extends BaseRepository
         );
     }
 
-    public static function find($tag_id)
+    public static function find($tag_id) :array
     {
         $sql = "SELECT * FROM tags WHERE id = :id";
         $sth = self::univ($sql, ['id' => $tag_id]);

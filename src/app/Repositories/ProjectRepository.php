@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 class ProjectRepository extends BaseRepository
 {
-    public static function all()
+    public static function all() :array
     {
         $sth = self::univ(
             "SELECT id, project_name, author_id FROM projects", []
@@ -12,7 +12,7 @@ class ProjectRepository extends BaseRepository
         return $sth->fetchAll();
     }
 
-    public static function destroy(int $id)
+    public static function destroy(int $id) :array
     {
         $sth = self::univ(
             "DELETE FROM projects where id = $id", []
@@ -20,7 +20,7 @@ class ProjectRepository extends BaseRepository
         return $sth->fetchAll();
     }
 
-    public static function store($project_name, $author_id)
+    public static function store($project_name, $author_id) :array
     {
         $sth = self::univ(
             "INSERT INTO projects (project_name, author_id) VALUES (:project_name, :author_id)",
@@ -29,7 +29,7 @@ class ProjectRepository extends BaseRepository
         return $sth->fetchAll();
     }
 
-    public static function update($project_id, $project_name, $author_id)
+    public static function update($project_id, $project_name, $author_id) :void
     {
         self::univ(
             "UPDATE projects SET project_name=:project_name, author_id=:author_id WHERE id = :project_id",
@@ -37,7 +37,7 @@ class ProjectRepository extends BaseRepository
         );
     }
 
-    public static function find($project_id)
+    public static function find($project_id) :array
     {
         $sql = "SELECT * FROM projects WHERE id = :id";
         $sth = self::univ($sql, ['id' => $project_id]);

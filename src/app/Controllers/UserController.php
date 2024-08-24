@@ -18,13 +18,13 @@ class UserController
         $this->blade = new Blade(ROOT_PATH . '/views', ROOT_PATH . '/cache');
     }
 
-    public function index()
+    public function index() :void
     {
         $users = UserRepository::all();
         echo $this->blade->make('users', ['users' => $users])->render();
     }
 
-    public function show(int $id)
+    public function show(int $id) :void
     {
         $result = UserRepository::find($id);
         if ($result === false) {
@@ -34,24 +34,24 @@ class UserController
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id) :void
     {
         UserRepository::destroy($id);
         redirect('/users');
     }
 
-    public function create()
+    public function create() :void
     {
         echo $this->blade->make('user_add')->render();
     }
 
-    public function store()
+    public function store() :void
     {
         UserRepository::store(input()->post('user_name'), input()->post('user_surname'), input()->post('user_patronymic'));
         redirect('/users');
     }
 
-    public function edit(int $id)
+    public function edit(int $id) :void
     {
         $result = UserRepository::find($id);
         if ($result === false) {
@@ -61,7 +61,7 @@ class UserController
         }
     }
 
-    public function update(int $id)
+    public function update(int $id) :void
     {
         UserRepository::update($id, $_POST['user_name'], $_POST['user_surname'], $_POST['user_patronymic']);
         redirect('/users');
