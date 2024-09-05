@@ -5,25 +5,24 @@ namespace App\temp\Models;
 use App\temp\Constants\Size;
 use App\temp\Models\Cars\BaseCar;
 use App\temp\Models\Cars\Ford;
+use App\temp\Models\Cars\Toyota;
+use App\temp\Models\Users\Dispatcher;
 
 class Fleet
 {
     public function __construct(
         public Size   $size,
-        private array $availableCars = [],
+        private array $availableCars = [
+            new Ford(21, 'sedan'),
+            new Toyota(22, 'suv'),
+            new Ford(11, 'sedan'),
+        ],
     )
     {
     }
 
     public function addCar(BaseCar $car): void //BaseCar - тип данных, $car - параметр метода
     {
-//        $this->availableCars[] = $car;
-        //проверяем количество элементов в массиве на наличие в нём пяти или менее элементов (машин)
-        //если меньше или равно 5 - таксопарк определяется, как малый и туда добавляется элемент (машина)
-
-        //если количество машин < 5
-        //то добавляем машину
-        //иначе не добавляем
 
         if (count($this->availableCars) < 5 && $this->size->value == 'S') {
             $this->availableCars[] = $car;
@@ -52,6 +51,12 @@ class Fleet
         return count($this->availableCars);
     }
 
+    public function getRandomCar(): string
+    {
+        $randomCarKey = array_rand($this->availableCars,   1);
+        $randomCar = $this->availableCars[$randomCarKey];
+        return $randomCar->getCarName();
+    }
 }
 
 
@@ -67,4 +72,20 @@ class Fleet
 //
 //
 //    }
+
+
+
+//    public function __construct(
+//        public string $model,
+//        public string $availability,
+//    )
+//    {
+//    }
+//
+//    public function ShowAvailableCars(array $fleet)
+//    {
+//
+//
+//    }
+
 

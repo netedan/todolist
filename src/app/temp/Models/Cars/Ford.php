@@ -12,4 +12,10 @@ class Ford extends BaseCar
         {
             parent::__construct($wheelDiameter, $carBody, $colour);
         }
+
+        public function carName(): string
+        {
+            return parent::getCarName();
+        }
+//"Ford" . self::getCarName();
 }

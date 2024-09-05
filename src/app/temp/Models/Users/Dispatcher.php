@@ -10,7 +10,7 @@ class Dispatcher extends User
         public string $name,
         public string $surname,
         public string $patronymic,
-        public Fleet  $fleet
+//        public Fleet  $fleet
     )
     {
         parent::__construct($name, $surname, $patronymic);

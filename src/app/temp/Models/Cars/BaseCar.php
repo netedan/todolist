@@ -11,4 +11,8 @@ abstract class BaseCar
     )
     {
     }
+    public function getCarName(): string
+    {
+        return "{$this->wheelDiameter} - {$this->carBody} - {$this->colour}";
+    }
 }
